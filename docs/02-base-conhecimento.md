@@ -13,9 +13,7 @@
 
 ## Adaptações nos Dados
 
-> Você modificou ou expandiu os dados mockados? Descreva aqui.
-
-
+Expansão do conjunto de dados mockados adicionando a coluna objetivo_cliente, permitindo registrar e mapear as metas financeiras informadas pelos usuários durante as interações com o agente.
 
 ---
 
@@ -46,6 +44,8 @@ with open('data/produtos_financeiros.json', 'r', encoding='utf-8') as f:
 ### Como os dados são usados no prompt?
 > Os dados vão no system prompt? São consultados dinamicamente?
 
+Para simplificar, podemos simplesmente "injetar" os dados em nosso prompt. garantindo que o agente tenha o melhor contexto possível. Lembrando que, em soluções mais robustas, o ideal é que essas informações sejam carregadas dinamicamente para que possamos ganhar flexibilidade. 
+
 ```text
 DADOS  E PERFIL DO USUÁRIO (data/perfil_investidor.json):
 
@@ -75,12 +75,13 @@ DADOS  E PERFIL DO USUÁRIO (data/perfil_investidor.json):
 
 HISTÓRICO DE ATENDIMENTO (data/historico_atendimento.csv):
 
-data,canal,tema,resumo,resolvido
-2025-09-15,chat,CDB,Cliente perguntou sobre rentabilidade e prazos,sim
-2025-09-22,telefone,Problema no app,Erro ao visualizar extrato foi corrigido,sim
-2025-10-01,chat,Tesouro Selic,Cliente pediu explicação sobre o funcionamento do Tesouro Direto,sim
-2025-10-12,chat,Metas financeiras,Cliente acompanhou o progresso da reserva de emergência,sim
-2025-10-25,email,Atualização cadastral,Cliente atualizou e-mail e telefone,sim
+data,canal,tema,resumo,resolvido,objetivo_cliente
+2025-09-15,chat,CDB,Cliente perguntou sobre rentabilidade e prazos,sim,Rendimento a Curto Prazo
+2025-09-22,telefone,Problema no app,Erro ao visualizar extrato foi corrigido,sim,-
+2025-10-01,chat,Tesouro Selic,Cliente pediu explicação sobre o funcionamento do Tesouro Direto,sim,Aprender sobre Investimentos
+2025-10-12,chat,Metas financeiras,Cliente acompanhou o progresso da reserva de emergência,sim,Montar Reserva de Emergência (R$ 10.000)
+2025-10-25,email,Atualização cadastral,Cliente atualizou e-mail e telefone,sim,-
+2025-11-05,chat,Planejamento de Viagem,Cliente solicitou simulação para poupar até o fim do ano,sim,Viagem de Férias (R$ 5.000)
 
 TRANSAÇÕES DO USUÁRIO (data/transacoes.csv:
 
@@ -150,14 +151,43 @@ PRODUTOS DISPONÍVEIS PARA ENSINO (data/produtos_financeiros.json):
 
 > Mostre um exemplo de como os dados são formatados para o agente.
 
-```
-Dados do Cliente:
-- Nome: João Silva
-- Perfil: Moderado
-- Saldo disponível: R$ 5.000
+O exemplo de contexto montado abaixo, se baseia nos dados originais da base de conhecimento, mas os sintetiza deixando apenas as informações mais relevantes, otimizando assim o consumo de Tokens. Entretanto, vale lembrar que mais importante do que economizar Tokens, é ter todas as informações relevantes disponíveis em seu contexto.  
 
-Últimas transações:
-- 01/11: Supermercado - R$ 450
-- 03/11: Streaming - R$ 55
-...
+```
+Dados e Perfil do Usuário:
+- Nome: João Silva | Idade: 32 anos | Profissão: Analista de Sistemas
+- Renda Mensal: R$ 5.000,00 | Patrimônio Total: R$ 15.000,00
+- Perfil de Investidor: Moderado | Aceita Risco: Não (false)
+- Objetivo Principal: Construir reserva de emergência
+- Reserva de Emergência Atual: R$ 10.000,00
+- Metas:
+  1. Completar reserva de emergência - R$ 15.000,00 (Prazo: 2026-06)
+  2. Entrada do apartamento - R$ 50.000,00 (Prazo: 2027-12)
+
+Histórico de Atendimentos:
+- 15/09/2025 [Chat] Tema: CDB | Resumo: Cliente perguntou sobre rentabilidade e prazos | Resolvido: Sim | Objetivo: Rendimento a Curto Prazo
+- 22/09/2025 [Telefone] Tema: Problema no app | Resumo: Erro ao visualizar extrato foi corrigido | Resolvido: Sim | Objetivo: -
+- 01/10/2025 [Chat] Tema: Tesouro Selic | Resumo: Cliente pediu explicação sobre o funcionamento do Tesouro Direto | Resolvido: Sim | Objetivo: Aprender sobre Investimentos
+- 12/10/2025 [Chat] Tema: Metas financeiras | Resumo: Cliente acompanhou o progresso da reserva de emergência | Resolvido: Sim | Objetivo: Montar Reserva de Emergência (R$ 10.000)
+- 25/10/2025 [E-mail] Tema: Atualização cadastral | Resumo: Cliente atualizou e-mail e telefone | Resolvido: Sim | Objetivo: -
+- 05/11/2025 [Chat] Tema: Planejamento de Viagem | Resumo: Cliente solicitou simulação para poupar até o fim do ano | Resolvido: Sim | Objetivo: Viagem de Férias (R$ 5.000)
+
+Transações Recentes:
+- 01/10/2025: Salário (Receita - Moradia) | +R$ 5.000,00
+- 02/10/2025: Aluguel (Saída - Moradia) | -R$ 1.200,00
+- 03/10/2025: Supermercado (Saída - Alimentação) | -R$ 450,00
+- 05/10/2025: Netflix (Saída - Lazer) | -R$ 55,90
+- 07/10/2025: Farmácia (Saída - Saúde) | -R$ 89,00
+- 10/10/2025: Restaurante (Saída - Alimentação) | -R$ 120,00
+- 12/10/2025: Uber (Saída - Transporte) | -R$ 45,00
+- 15/10/2025: Conta de Luz (Saída - Moradia) | -R$ 180,00
+- 20/10/2025: Academia (Saída - Saúde) | -R$ 99,00
+- 25/10/2025: Combustível (Saída - Transporte) | -R$ 250,00
+
+Produtos Disponíveis para Ensino:
+1. Tesouro Selic | Categoria: Renda Fixa | Risco: Baixo | Rentabilidade: 100% da Selic | Aporte Mínimo: R$ 30,00 | Indicado para: Reserva de emergência e iniciantes
+2. CDB Liquidez Diária | Categoria: Renda Fixa | Risco: Baixo | Rentabilidade: 102% do CDI | Aporte Mínimo: R$ 100,00 | Indicado para: Quem busca segurança com rendimento diário
+3. LCI/LCA | Categoria: Renda Fixa | Risco: Baixo | Rentabilidade: 95% do CDI | Aporte Mínimo: R$ 1.000,00 | Indicado para: Quem pode esperar 90 dias (isento de IR)
+4. Fundo Multimercado | Categoria: Fundo | Risco: Médio | Rentabilidade: CDI + 2% | Aporte Mínimo: R$ 500,00 | Indicado para: Perfil moderado que busca diversificação
+5. Fundo de Ações | Categoria: Fundo | Risco: Alto | Rentabilidade: Variável | Aporte Mínimo: R$ 100,00 | Indicado para: Perfil arrojado com foco no longo prazo
 ```

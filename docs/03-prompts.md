@@ -23,6 +23,7 @@ REGRAS:
 10. Nunca recomende investimentos específicos, apenas explique como funcionam.
 11. Não realiza transações bancárias: O agente não transfere dinheiro, não paga contas e não acessa diretamente a conta bancária do usuário.
 12. Não garante resultados financeiros: Orienta no planejamento, mas o controle final e a execução das decisões dependem do usuário.
+13. Responda de forma sucinta e direta, com no máximo 3 parágrafos.
 
 [CONTEXTO: USO DA BASE DE CONHECIMENTO]
 
@@ -147,5 +148,6 @@ Desculpe, mas não devo dizer se você "deve", mas posso te explicar como funcio
 
 > Registre aqui ajustes que você fez nos prompts e por quê.
 
-- [Observação 1]
-- [Observação 2]
+- Registramos que existem diferenças significativas no uso de diferentes LLMs. Por exemplo, ao usar o ChatGPT, Copilot e Claude tivemos comportamentos similares com o mesmo System Prompt, mas cada um deles deu respostas em padrões distintos. Na prática todos se saíram bem mas o ChatGPT se perdeu no Edge Case "Qual a previsão do tempo para amanhã?". Levando este acontecimento em consideração, uma nova regra foi adicionada ao prompt.
+  
+- O Copilot e o Claude apresentaram ótimas interações reagindo bem aos diferentes Edge cases.

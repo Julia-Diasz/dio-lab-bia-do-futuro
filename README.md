@@ -1,149 +1,60 @@
-# 🤖 Agente Financeiro Inteligente com IA Generativa
+# 💰 Sr. EasyWay — Educador Financeiro Inteligente
 
-## Contexto
-
-Os assistentes virtuais no setor financeiro estão evoluindo de simples chatbots reativos para **agentes inteligentes e proativos**. Neste desafio, você vai idealizar e prototipar um agente financeiro que utiliza IA Generativa para:
-
-- **Antecipar necessidades** ao invés de apenas responder perguntas
-- **Personalizar** sugestões com base no contexto de cada cliente
-- **Cocriar soluções** financeiras de forma consultiva
-- **Garantir segurança** e confiabilidade nas respostas (anti-alucinação)
-
-> [!TIP]
-> Na pasta [`examples/`](./examples/) você encontra referências de implementação para cada etapa deste desafio.
+O **Sr. EasyWay** é um assistente de inteligência artificial voltado para educação financeira personalizada. O objetivo do projeto é transformar a maneira como as pessoas lidam com suas finanças pessoais, oferecendo orientações claras, análise de perfis e sugestões de produtos financeiros adequados a cada perfil de cliente.
 
 ---
 
-## O Que Você Deve Entregar
+## 📹 Pitch do Projeto
 
-### 1. Documentação do Agente
+Confira o vídeo de demonstração e apresentação do **Sr. EasyWay**:
 
-Defina **o que** seu agente faz e **como** ele funciona:
-
-- **Caso de Uso:** Qual problema financeiro ele resolve? (ex: consultoria de investimentos, planejamento de metas, alertas de gastos)
-- **Persona e Tom de Voz:** Como o agente se comporta e se comunica?
-- **Arquitetura:** Fluxo de dados e integração com a base de conhecimento
-- **Segurança:** Como evitar alucinações e garantir respostas confiáveis?
-
-📄 **Template:** [`docs/01-documentacao-agente.md`](./docs/01-documentacao-agente.md)
+[![Assista ao Pitch do Sr. EasyWay](https://img.youtube.com/vi/SEU_VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=SEU_VIDEO_ID)
 
 ---
 
-### 2. Base de Conhecimento
+## 📁 Estrutura do Repositório
 
-Utilize os **dados mockados** disponíveis na pasta [`data/`](./data/) para alimentar seu agente:
-
-| Arquivo | Formato | Descrição |
-|---------|---------|-----------|
-| `transacoes.csv` | CSV | Histórico de transações do cliente |
-| `historico_atendimento.csv` | CSV | Histórico de atendimentos anteriores |
-| `perfil_investidor.json` | JSON | Perfil e preferências do cliente |
-| `produtos_financeiros.json` | JSON | Produtos e serviços disponíveis |
-
-Você pode adaptar ou expandir esses dados conforme seu caso de uso.
-
-📄 **Template:** [`docs/02-base-conhecimento.md`](./docs/02-base-conhecimento.md)
-
----
-
-### 3. Prompts do Agente
-
-Documente os prompts que definem o comportamento do seu agente:
-
-- **System Prompt:** Instruções gerais de comportamento e restrições
-- **Exemplos de Interação:** Cenários de uso com entrada e saída esperada
-- **Tratamento de Edge Cases:** Como o agente lida com situações limite
-
-📄 **Template:** [`docs/03-prompts.md`](./docs/03-prompts.md)
-
----
-
-### 4. Aplicação Funcional
-
-Desenvolva um **protótipo funcional** do seu agente:
-
-- Chatbot interativo (sugestão: Streamlit, Gradio ou similar)
-- Integração com LLM (via API ou modelo local)
-- Conexão com a base de conhecimento
-
-📁 **Pasta:** [`src/`](./src/)
-
----
-
-### 5. Avaliação e Métricas
-
-Descreva como você avalia a qualidade do seu agente:
-
-**Métricas Sugeridas:**
-- Precisão/assertividade das respostas
-- Taxa de respostas seguras (sem alucinações)
-- Coerência com o perfil do cliente
-
-📄 **Template:** [`docs/04-metricas.md`](./docs/04-metricas.md)
-
----
-
-### 6. Pitch
-
-Grave um **pitch de 3 minutos** (estilo elevador) apresentando:
-
-- Qual problema seu agente resolve?
-- Como ele funciona na prática?
-- Por que essa solução é inovadora?
-
-📄 **Template:** [`docs/05-pitch.md`](./docs/05-pitch.md)
-
----
-
-## Ferramentas Sugeridas
-
-Todas as ferramentas abaixo possuem versões gratuitas:
-
-| Categoria | Ferramentas |
-|-----------|-------------|
-| **LLMs** | [ChatGPT](https://chat.openai.com/), [Copilot](https://copilot.microsoft.com/), [Gemini](https://gemini.google.com/), [Claude](https://claude.ai/), [Ollama](https://ollama.ai/) |
-| **Desenvolvimento** | [Streamlit](https://streamlit.io/), [Gradio](https://www.gradio.app/), [Google Colab](https://colab.research.google.com/) |
-| **Orquestração** | [LangChain](https://www.langchain.com/), [LangFlow](https://www.langflow.org/), [CrewAI](https://www.crewai.com/) |
-| **Diagramas** | [Mermaid](https://mermaid.js.org/), [Draw.io](https://app.diagrams.net/), [Excalidraw](https://excalidraw.com/) |
-
----
-
-## Estrutura do Repositório
+O projeto está organizado da seguinte forma:
 
 ```
-📁 lab-agente-financeiro/
-│
-├── 📄 README.md
-│
-├── 📁 data/                          # Dados mockados para o agente
-│   ├── historico_atendimento.csv     # Histórico de atendimentos (CSV)
-│   ├── perfil_investidor.json        # Perfil do cliente (JSON)
-│   ├── produtos_financeiros.json     # Produtos disponíveis (JSON)
-│   └── transacoes.csv                # Histórico de transações (CSV)
-│
-├── 📁 docs/                          # Documentação do projeto
-│   ├── 01-documentacao-agente.md     # Caso de uso e arquitetura
-│   ├── 02-base-conhecimento.md       # Estratégia de dados
-│   ├── 03-prompts.md                 # Engenharia de prompts
-│   ├── 04-metricas.md                # Avaliação e métricas
-│   └── 05-pitch.md                   # Roteiro do pitch
-│
-├── 📁 src/                           # Código da aplicação
-│   └── app.py                        # (exemplo de estrutura)
-│
-├── 📁 assets/                        # Imagens e diagramas
-│   └── ...
-│
-└── 📁 examples/                      # Referências e exemplos
+.
+├── assets/                  # Recursos visuais e roteiros do laboratório
+│   ├── README.md
+│   └── RoteiroLab.md        # Passo a passo e diretrizes do lab
+├── data/                    # Módulos de dados simulados / Base do agente
+│   ├── historico_atendimento.csv
+│   ├── perfil_investidor.json
+│   ├── produtos_financeiros.json
+│   └── transacoes.csv
+├── docs/                    # Documentação detalhada da solução
+│   ├── 01-documentacao-agente.md # Arquitetura e persona do Sr. EasyWay
+│   ├── 02-base-conhecimento.md   # Conhecimento do agente em finanças
+│   ├── 03-prompts.md             # System prompts e engenharia de prompt
+│   ├── 04-metricas.md            # Métricas de avaliação do agente
+│   └── 05-pitch.md               # Apresentação executiva do projeto
+└── src/                     # Código-fonte e scripts de execução
     └── README.md
 ```
 
 ---
 
-## Dicas Finais
+## 🚀 Funcionalidades Principais
 
-1. **Comece pelo prompt:** Um bom system prompt é a base de um agente eficaz
-2. **Use os dados mockados:** Eles garantem consistência e evitam problemas com dados sensíveis
-3. **Foque na segurança:** No setor financeiro, evitar alucinações é crítico
-4. **Teste cenários reais:** Simule perguntas que um cliente faria de verdade
-5. **Seja direto no pitch:** 3 minutos passam rápido, vá ao ponto
+- **Análise de Perfil Financeiro:** Diagnóstico a partir do histórico de transações e perfil de risco do usuário (`data/`).
+- **Engenharia de Prompt Avançada:** Prompts estruturados com instruções claras, regras de conduta e restrições de resposta (`docs/03-prompts.md`).
+- **Recomendação Inteligente:** Mapeamento entre perfil de investimento e catálogo de produtos financeiros (`data/produtos_financeiros.json`).
+- **Avaliação & Métricas:** Acompanhamento contínuo de qualidade da resposta e engajamento do usuário (`docs/04-metricas.md`).
+
+---
+
+## 🛠️ Como Utilizar
+
+1. **Documentação:** Explore a pasta `docs/` para entender a modelagem, os prompts utilizados e a proposta de valor (**Pitch**).
+2. **Dados de Teste:** Em `data/`, consulte os modelos de dados e históricos estruturados para alimentação do modelo RAG ou assistente.
+3. **Execução:** Consulte os guias em `src/` e `assets/RoteiroLab.md` para instruções de execução da aplicação.
+
+---
+
+## 🎯 Objetivo do Projeto
+
+Desenvolvido no contexto de desafio prático (DIO Lab), o **Sr. EasyWay** demonstra a aplicação prática de agentes de IA Generativa voltados ao setor financeiro, focando em empatia, clareza técnica e precisão no direcionamento financeiro.

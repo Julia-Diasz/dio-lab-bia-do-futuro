@@ -12,7 +12,7 @@
 Ollama run gpt-oss "Olá!"
 ```
 
-## Exemplo de requirements.txt
+## Código Completo
 
 Todo código-fonte está no arquivo `app.py`.
 
